@@ -1,3 +1,35 @@
+body {
+	background-image: url("../images/jewels_background.jpg");
+
+}
+
+.container {
+	background-color: beige; 
+
+	padding: 20px;
+	margin: 20px;
+
+}
+#title {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+#targetNumber, #win-loss{
+	width: 50%;
+	position: relative;
+	float: left;
+
+}
+
+#gemBox, #totalScore {
+	position: relative;
+	float: left;
+}
+
+#totalScore {
+	text-align: center;
+	margin-left: 30px;
+}
 img {
 	width: 150px;
 	height: 150px;
