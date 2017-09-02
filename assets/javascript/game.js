@@ -1,12 +1,15 @@
 //Game Starts:
 $(document).ready(function(){
 
+
 var wins = 0
 var losses = 0
+
+
 var score = 0
 
 //display random target number for user to match between 19 - 120
-var randomNumber = parseInt(Math.floor(Math.random() * (70- 50) + 50));
+var randomNumber = parseInt(Math.floor(Math.random() * (120 - 19) + 19));
 console.log(randomNumber)
 $("#targetNumber").html(randomNumber)
 
@@ -17,11 +20,26 @@ var randomGemNumber2 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.le
 var randomGemNumber3 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
 var randomGemNumber4 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
 
+var reset = function(){
+	score = 0;
+	randomNumber = parseInt(Math.floor(Math.random()*(120-19)+19));
+	console.log(randomNumber)
+	$("targetNumber").val(randomNumber)//why won't the html change to reflect the new #?
+
+	randomGemNumber1 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+	randomGemNumber2 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+	randomGemNumber3 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+	randomGemNumber4 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+	$("#ambergem").val(randomGemNumber1)
+	$("#emerald").val(randomGemNumber2)
+	$("#redgem").val(randomGemNumber3)
+	$("#sapphire").val(randomGemNumber4)
+}
+
 $("#ambergem").val(randomGemNumber1)
 $("#emerald").val(randomGemNumber2)
 $("#redgem").val(randomGemNumber3)
 $("#sapphire").val(randomGemNumber4)
-
 
 
 $("#ambergem").on("click", function(){
@@ -41,13 +59,12 @@ $("#sapphire").on("click", function(){
 })
 
 //display total score based on values from 'click' function from various gems added together
-//var score = 0
 $(".gems").on("click", function(jewel){
 	
 	score = score + parseInt(this.value)
 	$("#totalScore").text("Total score: " + score)
 	
-	//console.log(score)
+
 	if (score < randomNumber) {
 		console.log("keep going")
 		
@@ -58,7 +75,7 @@ $(".gems").on("click", function(jewel){
 		losses++
 		$("#losses").text("Losses: " + losses)
 		
-		startGame()
+		reset()
 	}
 
 	else {
@@ -66,7 +83,7 @@ $(".gems").on("click", function(jewel){
 		wins++
 		$("#wins").text("Wins: " + wins)
 		
-		startGame()
+		reset()
 	}
 
 
