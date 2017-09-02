@@ -24,7 +24,7 @@ var reset = function(){
 	score = 0;
 	randomNumber = parseInt(Math.floor(Math.random()*(120-19)+19));
 	console.log(randomNumber)
-	$("targetNumber").val(randomNumber)//why won't the html change to reflect the new #?
+	$("targetNumber").val(randomNumber)//why won't the html change to reflect the new #, console.log works fine??
 
 	randomGemNumber1 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
 	randomGemNumber2 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
