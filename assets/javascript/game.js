@@ -3,17 +3,10 @@ $(document).ready(function(){
 
 var wins = 0
 var losses = 0
-
-function startGame(){
-	totalScore = "";
-	randomGemNumber1 = "";
-	randomGemNumber2 = "";
-	randomGemNumber3 = "";
-	randomGemNumber4 = "";
-}
+var score = 0
 
 //display random target number for user to match between 19 - 120
-var randomNumber = parseInt(Math.floor(Math.random() * (120 - 19) + 19));
+var randomNumber = parseInt(Math.floor(Math.random() * (70- 50) + 50));
 console.log(randomNumber)
 $("#targetNumber").html(randomNumber)
 
@@ -28,6 +21,8 @@ $("#ambergem").val(randomGemNumber1)
 $("#emerald").val(randomGemNumber2)
 $("#redgem").val(randomGemNumber3)
 $("#sapphire").val(randomGemNumber4)
+
+
 
 $("#ambergem").on("click", function(){
  	console.log(this.value)
@@ -46,29 +41,33 @@ $("#sapphire").on("click", function(){
 })
 
 //display total score based on values from 'click' function from various gems added together
-var score = 0
+//var score = 0
 $(".gems").on("click", function(jewel){
 	
 	score = score + parseInt(this.value)
 	$("#totalScore").text("Total score: " + score)
 	
-	console.log(score)
-	// if (score < targetNumber) {
-	// 	console.log(score)
-	// 	return(jewel)
-	// }
+	//console.log(score)
+	if (score < randomNumber) {
+		console.log("keep going")
+		
+	}
 
-	// else if (score > targetNumber){
-	// 	console.log("You loose!")
-	// 	losses++
-	// 	return(jewel)
-	// }
+	else if (score > randomNumber){
+		console.log("You loose")
+		losses++
+		$("#losses").text("Losses: " + losses)
+		
+		startGame()
+	}
 
-	// else if (score===targetNumber){
-	// 	console.log("WINNER!")
-	// 	wins++
-	// 	return(startGame)
-	// }
+	else {
+		console.log("WINNER!")
+		wins++
+		$("#wins").text("Wins: " + wins)
+		
+		startGame()
+	}
 
 
 })
