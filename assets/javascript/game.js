@@ -13,16 +13,16 @@ function startGame(){
 }
 
 //display random target number for user to match between 19 - 120
-var randomNumber = Math.floor(Math.random() * (120 - 19) + 19);
+var randomNumber = parseInt(Math.floor(Math.random() * (120 - 19) + 19));
 console.log(randomNumber)
 $("#targetNumber").html(randomNumber)
 
 //assign each crystal random number between 1 - 12
 var gemNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-var randomGemNumber1 = gemNumber[Math.floor(Math.random()* gemNumber.length)];
-var randomGemNumber2 = gemNumber[Math.floor(Math.random()* gemNumber.length)];
-var randomGemNumber3 = gemNumber[Math.floor(Math.random()* gemNumber.length)];
-var randomGemNumber4 = gemNumber[Math.floor(Math.random()* gemNumber.length)];
+var randomGemNumber1 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+var randomGemNumber2 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+var randomGemNumber3 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
+var randomGemNumber4 = parseInt(gemNumber[Math.floor(Math.random()* gemNumber.length)]);
 
 $("#ambergem").val(randomGemNumber1)
 $("#emerald").val(randomGemNumber2)
@@ -45,20 +45,36 @@ $("#sapphire").on("click", function(){
  	console.log(this.value)
 })
 
-//display total score based on values from 'click' function from various gems
-$(".gems").on("click", function(){
-	randomGemNumber1 = parseInt(randomGemNumber1);
-	randomGemNumber2 = parseInt(randomGemNumber2);
-	randomGemNumber3 = parseInt(randomGemNumber3);
-	randomGemNumber4 = parseInt(randomGemNumber4);
+//display total score based on values from 'click' function from various gems added together
+var score = 0
+$(".gems").on("click", function(jewel){
+	
+	score = score + parseInt(this.value)
+	$("#totalScore").text("Total score: " + score)
+	
+	console.log(score)
+	// if (score < targetNumber) {
+	// 	console.log(score)
+	// 	return(jewel)
+	// }
 
-	$("#totalScore").text(this.value)
+	// else if (score > targetNumber){
+	// 	console.log("You loose!")
+	// 	losses++
+	// 	return(jewel)
+	// }
+
+	// else if (score===targetNumber){
+	// 	console.log("WINNER!")
+	// 	wins++
+	// 	return(startGame)
+	// }
+
 
 })
 
-//if user hits target number exactly, wins++
-//if user goes over target number, losses++
-//after user wins or loses, game begins again wtih new assigned numbers; not having to refresh page!
 
+
+	
 })
 
